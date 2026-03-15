@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RealTalk — Real-Time Chat Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Canvas for particle background -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- ══════════════════════════════
+       NAVIGATION
+  ══════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        RealTalk
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="#overview" class="nav-link">Overview</a></li>
+        <li><a href="#metrics" class="nav-link">Metrics</a></li>
+        <li><a href="#architecture" class="nav-link">Architecture</a></li>
+        <li><a href="#stack" class="nav-link">Stack</a></li>
+        <li><a href="#code" class="nav-link">Code</a></li>
+      </ul>
+
+      <a href="https://github.com" target="_blank" class="nav-github">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
+  <section class="hero" id="overview">
+    <div class="hero-left reveal-left">
+      <div class="hero-tag">
+        <span class="tag-dot"></span>
+        Production-Grade · Open Source
+      </div>
+
+      <h1 class="hero-heading">
+        Real&#8209;Time Chat<br>
+        <em>at Scale.</em>
+      </h1>
+
+      <p class="hero-desc">
+        A distributed messaging platform exploring the frontier of concurrent real-time communication — engineered with React, Node.js, and WebSocket architecture for sub-second delivery at scale.
+      </p>
+
+      <div class="hero-pills">
+        <span class="pill"><span class="pill-icon">⚡</span>Sub-second delivery</span>
+        <span class="pill"><span class="pill-icon">👥</span>100+ concurrent users</span>
+        <span class="pill"><span class="pill-icon">📡</span>WebSocket + REST hybrid</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="https://github.com" target="_blank" class="cta-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub Repository
+        </a>
+        <a href="#architecture" class="cta-secondary">Explore Architecture</a>
+      </div>
+    </div>
+
+    <div class="hero-right reveal-right">
+      <!-- Chat window mockup -->
+      <div class="chat-window">
+        <div class="chat-titlebar">
+          <div class="traffic-lights">
+            <span class="tl tl-red"></span>
+            <span class="tl tl-yellow"></span>
+            <span class="tl tl-green"></span>
+          </div>
+          <span class="chat-window-title">realtalk / #engineering</span>
+          <div class="online-badge">
+            <span class="live-dot"></span>
+            <span>147 online</span>
+          </div>
+        </div>
+
+        <div class="chat-sidebar">
+          <div class="sidebar-section">CHANNELS</div>
+          <div class="sidebar-item active"># general</div>
+          <div class="sidebar-item"># engineering</div>
+          <div class="sidebar-item"># deployments</div>
+          <div class="sidebar-section" style="margin-top:12px">DIRECT</div>
+          <div class="sidebar-item">@ jamie_s</div>
+          <div class="sidebar-item">@ r_kumar</div>
+        </div>
+
+        <div class="chat-main">
+          <div class="chat-messages" id="chatMessages">
+
+            <div class="msg-group">
+              <div class="msg-avatar av1">JS</div>
+              <div class="msg-body">
+                <div class="msg-meta"><span class="msg-name">jamie_s</span><span class="msg-time">2:41 PM</span></div>
+                <div class="msg-text">Just pushed the WebSocket broadcast refactor. Latency is looking incredible 🚀</div>
+              </div>
+            </div>
+
+            <div class="msg-group">
+              <div class="msg-avatar av2">RK</div>
+              <div class="msg-body">
+                <div class="msg-meta"><span class="msg-name">r_kumar</span><span class="msg-time">2:42 PM</span></div>
+                <div class="msg-text">Sub-second delivery confirmed on load tests. 100+ concurrent users, zero lag.</div>
+              </div>
+            </div>
+
+            <div class="msg-group msg-self">
+              <div class="msg-body">
+                <div class="msg-meta self-meta"><span class="msg-time">2:43 PM</span><span class="msg-name">you</span></div>
+                <div class="msg-text self-text">35% responsiveness boost is wild. The REST + WS hybrid really paid off.</div>
+              </div>
+              <div class="msg-avatar av-self">ME</div>
+            </div>
+
+            <div class="msg-group">
+              <div class="msg-avatar av3">AL</div>
+              <div class="msg-body">
+                <div class="msg-meta"><span class="msg-name">a_lee</span><span class="msg-time">2:44 PM</span></div>
+                <div class="msg-text">Downtime reduction by 25% too. The room-based connection pooling is solid 🔥</div>
+              </div>
+            </div>
+
+            <div class="chat-typing" id="chatTyping">
+              <span>jamie_s is typing</span>
+              <span class="typing-anim"><span></span><span></span><span></span></span>
+            </div>
+          </div>
+
+          <div class="chat-input-row">
+            <input type="text" placeholder="Message #engineering..." readonly class="chat-input" />
+            <button class="chat-send">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       METRICS
+  ══════════════════════════════ -->
+  <section class="metrics" id="metrics">
+    <div class="section-header reveal-up">
+      <div class="eyebrow">By the Numbers</div>
+      <h2 class="section-title">Measured Performance</h2>
+      <p class="section-sub">Every metric is a direct result of architectural decisions — not coincidence.</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card reveal-up" style="--delay:0ms">
+        <div class="metric-icon-wrap" style="--c:#22d3ee">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="metric-number" data-count="100" data-suffix="+">0</div>
+        <div class="metric-label">Concurrent Users</div>
+        <div class="metric-sub">Supported simultaneously with zero degradation in message delivery speed.</div>
+      </div>
+
+      <div class="metric-card reveal-up" style="--delay:100ms">
+        <div class="metric-icon-wrap" style="--c:#a78bfa">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="metric-number" data-count="35" data-suffix="%">0</div>
+        <div class="metric-label">UI Responsiveness Boost</div>
+        <div class="metric-sub">Achieved by eliminating polling via persistent WebSocket connections.</div>
+      </div>
+
+      <div class="metric-card reveal-up" style="--delay:200ms">
+        <div class="metric-icon-wrap" style="--c:#34d399">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="metric-number" data-count="25" data-suffix="%">0</div>
+        <div class="metric-label">Downtime Reduction</div>
+        <div class="metric-sub">Improved system resilience through event-driven, fault-tolerant design.</div>
+      </div>
+
+      <div class="metric-card reveal-up" style="--delay:300ms">
+        <div class="metric-icon-wrap" style="--c:#fb923c">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="metric-number">&lt;1<span style="font-size:0.55em;margin-left:2px">s</span></div>
+        <div class="metric-label">Message Delivery</div>
+        <div class="metric-sub">End-to-end sub-second latency across all connected clients in any room.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       ARCHITECTURE
+  ══════════════════════════════ -->
+  <section class="architecture" id="architecture">
+    <div class="section-header reveal-up">
+      <div class="eyebrow">System Design</div>
+      <h2 class="section-title">Architecture Deep Dive</h2>
+      <p class="section-sub">A hybrid REST + WebSocket model — each protocol handling exactly what it's best at.</p>
+    </div>
+
+    <div class="arch-flow reveal-up">
+      <!-- Client -->
+      <div class="arch-node-wrap">
+        <div class="arch-label">Client Layer</div>
+        <div class="arch-node node-client">
+          <div class="arch-node-icon">🖥️</div>
+          <div class="arch-node-name">React Frontend</div>
+          <div class="arch-node-chips">
+            <span>useState</span><span>useEffect</span><span>WebSocket API</span><span>Axios</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow 1 -->
+      <div class="arch-arrow-block">
+        <div class="arch-connector">
+          <div class="conn-label top">HTTP/REST</div>
+          <div class="conn-line"></div>
+          <div class="conn-label bottom">ws:// stream</div>
+        </div>
+      </div>
+
+      <!-- Server -->
+      <div class="arch-node-wrap">
+        <div class="arch-label">Server Layer</div>
+        <div class="arch-node-stack">
+          <div class="arch-node node-server">
+            <div class="arch-node-icon">⚙️</div>
+            <div class="arch-node-name">Express REST API</div>
+            <div class="arch-node-chips"><span>Auth</span><span>History</span><span>CORS</span></div>
+          </div>
+          <div class="arch-node node-ws">
+            <div class="arch-node-icon">🔌</div>
+            <div class="arch-node-name">WebSocket Server</div>
+            <div class="arch-node-chips"><span>ws</span><span>Rooms</span><span>Broadcast</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow 2 -->
+      <div class="arch-arrow-block">
+        <div class="arch-connector">
+          <div class="conn-label top">Read/Write</div>
+          <div class="conn-line"></div>
+          <div class="conn-label bottom">Pub/Sub</div>
+        </div>
+      </div>
+
+      <!-- Data -->
+      <div class="arch-node-wrap">
+        <div class="arch-label">Data Layer</div>
+        <div class="arch-node-stack">
+          <div class="arch-node node-db">
+            <div class="arch-node-icon">🗄️</div>
+            <div class="arch-node-name">Database</div>
+            <div class="arch-node-chips"><span>Messages</span><span>Users</span><span>Rooms</span></div>
+          </div>
+          <div class="arch-node node-cache">
+            <div class="arch-node-icon">⚡</div>
+            <div class="arch-node-name">In-Memory Cache</div>
+            <div class="arch-node-chips"><span>Sessions</span><span>Active Conns</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture highlight cards -->
+    <div class="arch-highlights reveal-up">
+      <div class="highlight-card">
+        <span class="highlight-num">01</span>
+        <h4>Scalable by design</h4>
+        <p>Stateless REST endpoints + event-driven WebSocket handling allows horizontal scaling without shared state issues.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-num">02</span>
+        <h4>Room-based isolation</h4>
+        <p>Namespaced WebSocket connections ensure broadcasts are scoped — no cross-channel message leakage.</p>
+      </div>
+      <div class="highlight-card">
+        <span class="highlight-num">03</span>
+        <h4>Async persistence</h4>
+        <p>Messages are broadcast immediately via WebSocket while DB writes happen asynchronously — no latency penalty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FEATURES
+  ══════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="section-header reveal-up">
+      <div class="eyebrow">Capabilities</div>
+      <h2 class="section-title">What's Inside</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card feature-large reveal-up" style="--delay:0ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">🔄</div>
+        <h3>Distributed Real-Time Communication</h3>
+        <p>Engineered from the ground up for distributed messaging. Handles hundreds of concurrent connections using event-driven, non-blocking I/O — built to scale.</p>
+        <div class="feature-tags"><span>Node.js</span><span>WebSockets</span><span>Event-driven</span></div>
+      </div>
+
+      <div class="feature-card reveal-up" style="--delay:100ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">🧩</div>
+        <h3>Hybrid API Design</h3>
+        <p>REST handles auth, history, and data management. WebSockets power live message delivery. Two protocols, one seamless experience.</p>
+      </div>
+
+      <div class="feature-card reveal-up" style="--delay:150ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">🏠</div>
+        <h3>Room-Based Messaging</h3>
+        <p>Isolated chat rooms with namespaced connections. Targeted broadcasts, no cross-channel leakage, and clean connection teardown.</p>
+      </div>
+
+      <div class="feature-card reveal-up" style="--delay:200ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">📡</div>
+        <h3>Live Presence System</h3>
+        <p>Typing indicators and real-time online counts maintained through persistent socket state — zero polling required.</p>
+      </div>
+
+      <div class="feature-card reveal-up" style="--delay:250ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">📈</div>
+        <h3>100+ Concurrent Users</h3>
+        <p>Benchmarked and tested at scale. Connection pooling and efficient memory management keep performance solid under load.</p>
+      </div>
+
+      <div class="feature-card reveal-up" style="--delay:300ms">
+        <div class="feature-glow"></div>
+        <div class="feature-icon">🛡️</div>
+        <h3>Fault-Tolerant</h3>
+        <p>Graceful reconnect logic, heartbeat checks, and connection cleanup reduce downtime by 25% versus naive implementations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       TECH STACK
+  ══════════════════════════════ -->
+  <section class="stack-section" id="stack">
+    <div class="section-header reveal-up">
+      <div class="eyebrow">Technologies</div>
+      <h2 class="section-title">Built With</h2>
+      <p class="section-sub">Purpose-chosen technologies — no bloat, every dependency earns its place.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-card reveal-up" style="--delay:0ms">
+        <div class="stack-logo-wrap react-bg">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+            <circle cx="12" cy="12" r="2.2" fill="#61DAFB"/>
+            <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61DAFB" stroke-width="1.1" fill="none"/>
+            <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61DAFB" stroke-width="1.1" fill="none" transform="rotate(60 12 12)"/>
+            <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61DAFB" stroke-width="1.1" fill="none" transform="rotate(120 12 12)"/>
+          </svg>
+        </div>
+        <div class="stack-info">
+          <div class="stack-name">React</div>
+          <div class="stack-role">Frontend UI & State</div>
+          <div class="stack-detail">Hooks, component-based architecture, real-time state synchronization with WebSocket events.</div>
+        </div>
+      </div>
+
+      <div class="stack-card reveal-up" style="--delay:80ms">
+        <div class="stack-logo-wrap node-bg">
+          <svg viewBox="0 0 24 24" fill="#339933" width="36" height="36">
+            <path d="M12 1.85L2.47 7.3v9.3L12 22.15l9.53-5.55V7.3L12 1.85zM12 3.7l7.67 4.46v8.68L12 21.3l-7.67-4.46V8.16L12 3.7z"/>
+          </svg>
+        </div>
+        <div class="stack-info">
+          <div class="stack-name">Node.js</div>
+          <div class="stack-role">Runtime & Server</div>
+          <div class="stack-detail">Non-blocking I/O model powers concurrent WebSocket connections without thread overhead.</div>
+        </div>
+      </div>
+
+      <div class="stack-card reveal-up" style="--delay:160ms">
+        <div class="stack-logo-wrap ws-bg">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <rect width="36" height="36" rx="6" fill="#1a1a2e"/>
+            <text x="4" y="25" font-size="14" font-family="monospace" fill="#F7DF1E" font-weight="bold">WS</text>
+          </svg>
+        </div>
+        <div class="stack-info">
+          <div class="stack-name">WebSockets</div>
+          <div class="stack-role">Real-Time Transport</div>
+          <div class="stack-detail">Persistent bidirectional connections enable sub-second message delivery to all room participants.</div>
+        </div>
+      </div>
+
+      <div class="stack-card reveal-up" style="--delay:240ms">
+        <div class="stack-logo-wrap express-bg">
+          <svg viewBox="0 0 36 36" width="36" height="36">
+            <rect width="36" height="36" rx="6" fill="#222"/>
+            <text x="5" y="24" font-size="13" font-family="monospace" fill="#fff" font-weight="bold">ex</text>
+          </svg>
+        </div>
+        <div class="stack-info">
+          <div class="stack-name">Express.js</div>
+          <div class="stack-role">REST API Framework</div>
+          <div class="stack-detail">Handles authentication, message history retrieval, user management, and CORS configuration.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       CODE SECTION
+  ══════════════════════════════ -->
+  <section class="code-section" id="code">
+    <div class="section-header reveal-up">
+      <div class="eyebrow">Implementation</div>
+      <h2 class="section-title">Core Code</h2>
+      <p class="section-sub">The essential patterns powering the real-time engine.</p>
+    </div>
+
+    <div class="code-layout reveal-up">
+      <div class="code-tabs-nav">
+        <button class="ctab active" data-target="srv">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          server.js
+        </button>
+        <button class="ctab" data-target="client">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          useChat.js
+        </button>
+        <button class="ctab" data-target="broadcast">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          broadcast.js
+        </button>
+      </div>
+
+      <div class="code-pane active" id="pane-srv">
+        <div class="code-file-bar">
+          <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+          <span class="code-filename">server.js</span>
+          <span class="code-lang-tag">JavaScript</span>
+        </div>
+        <pre class="code-pre"><code><span class="ck">const</span> <span class="cv">WebSocket</span> = <span class="cf">require</span>(<span class="cs">'ws'</span>);
+<span class="ck">const</span> <span class="cv">express</span>   = <span class="cf">require</span>(<span class="cs">'express'</span>);
+<span class="ck">const</span> <span class="cv">http</span>      = <span class="cf">require</span>(<span class="cs">'http'</span>);
+
+<span class="ck">const</span> <span class="cv">app</span>    = <span class="cf">express</span>();
+<span class="ck">const</span> <span class="cv">server</span> = <span class="cv">http</span>.<span class="cf">createServer</span>(<span class="cv">app</span>);
+<span class="ck">const</span> <span class="cv">wss</span>    = <span class="ck">new</span> <span class="cv">WebSocket</span>.<span class="cf">Server</span>({ <span class="cv">server</span> });
+
+<span class="cc">// REST API — auth, history, user management</span>
+<span class="cv">app</span>.<span class="cf">use</span>(<span class="cs">'/api'</span>, <span class="cv">apiRouter</span>);
+<span class="cv">app</span>.<span class="cf">use</span>(<span class="cf">express</span>.<span class="cf">json</span>());
+
+<span class="cc">// Room registry: Map&lt;roomId, Set&lt;WebSocket&gt;&gt;</span>
+<span class="ck">const</span> <span class="cv">rooms</span> = <span class="ck">new</span> <span class="cf">Map</span>();
+
+<span class="cv">wss</span>.<span class="cf">on</span>(<span class="cs">'connection'</span>, (<span class="cv">ws</span>, <span class="cv">req</span>) =&gt; {
+  <span class="ck">const</span> { <span class="cv">room</span>, <span class="cv">userId</span> } = <span class="cf">parseQuery</span>(<span class="cv">req</span>.<span class="cv">url</span>);
+
+  <span class="cc">// Add socket to room</span>
+  <span class="ck">if</span> (!<span class="cv">rooms</span>.<span class="cf">has</span>(<span class="cv">room</span>)) <span class="cv">rooms</span>.<span class="cf">set</span>(<span class="cv">room</span>, <span class="ck">new</span> <span class="cf">Set</span>());
+  <span class="cv">rooms</span>.<span class="cf">get</span>(<span class="cv">room</span>).<span class="cf">add</span>(<span class="cv">ws</span>);
+
+  <span class="cv">ws</span>.<span class="cf">on</span>(<span class="cs">'message'</span>, <span class="ck">async</span> (<span class="cv">raw</span>) =&gt; {
+    <span class="ck">const</span> <span class="cv">msg</span> = <span class="cv">JSON</span>.<span class="cf">parse</span>(<span class="cv">raw</span>);
+
+    <span class="cc">// Broadcast to all peers in room (non-blocking)</span>
+    <span class="cf">broadcast</span>(<span class="cv">rooms</span>.<span class="cf">get</span>(<span class="cv">room</span>), <span class="cv">msg</span>, <span class="cv">ws</span>);
+
+    <span class="cc">// Async DB write — does not block broadcast</span>
+    <span class="ck">await</span> <span class="cf">persistMessage</span>({ ...<span class="cv">msg</span>, <span class="cv">room</span>, <span class="cv">userId</span> });
+  });
+
+  <span class="cv">ws</span>.<span class="cf">on</span>(<span class="cs">'close'</span>, () =&gt; {
+    <span class="cv">rooms</span>.<span class="cf">get</span>(<span class="cv">room</span>)?.<span class="cf">delete</span>(<span class="cv">ws</span>);
+  });
+});
+
+<span class="cv">server</span>.<span class="cf">listen</span>(<span class="cn">8080</span>, () =&gt;
+  <span class="cv">console</span>.<span class="cf">log</span>(<span class="cs">'RealTalk server on :8080'</span>)
+);</code></pre>
+      </div>
+
+      <div class="code-pane" id="pane-client">
+        <div class="code-file-bar">
+          <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+          <span class="code-filename">useChat.js</span>
+          <span class="code-lang-tag">React Hook</span>
+        </div>
+        <pre class="code-pre"><code><span class="ck">import</span> { <span class="cv">useState</span>, <span class="cv">useEffect</span>, <span class="cv">useRef</span>, <span class="cv">useCallback</span> }
+  <span class="ck">from</span> <span class="cs">'react'</span>;
+
+<span class="cc">/**
+ * Custom hook — manages WebSocket lifecycle
+ * and message state for a given room.
+ */</span>
+<span class="ck">export function</span> <span class="cf">useChat</span>(<span class="cv">room</span>) {
+  <span class="ck">const</span> [<span class="cv">messages</span>, <span class="cf">setMessages</span>] = <span class="cf">useState</span>([]);
+  <span class="ck">const</span> [<span class="cv">connected</span>, <span class="cf">setConnected</span>] = <span class="cf">useState</span>(<span class="ck">false</span>);
+  <span class="ck">const</span> [<span class="cv">typingUsers</span>, <span class="cf">setTypingUsers</span>] = <span class="cf">useState</span>([]);
+  <span class="ck">const</span> <span class="cv">wsRef</span> = <span class="cf">useRef</span>(<span class="ck">null</span>);
+
+  <span class="cf">useEffect</span>(() =&gt; {
+    <span class="ck">const</span> <span class="cv">ws</span> = <span class="ck">new</span> <span class="cf">WebSocket</span>(
+      <span class="cs">`ws://localhost:8080?room=<span class="cv">${room}</span>`</span>
+    );
+
+    <span class="cv">ws</span>.<span class="cv">onopen</span>  = () =&gt; <span class="cf">setConnected</span>(<span class="ck">true</span>);
+    <span class="cv">ws</span>.<span class="cv">onclose</span> = () =&gt; <span class="cf">setConnected</span>(<span class="ck">false</span>);
+
+    <span class="cv">ws</span>.<span class="cv">onmessage</span> = ({ <span class="cv">data</span> }) =&gt; {
+      <span class="ck">const</span> <span class="cv">event</span> = <span class="cv">JSON</span>.<span class="cf">parse</span>(<span class="cv">data</span>);
+
+      <span class="ck">if</span> (<span class="cv">event</span>.<span class="cv">type</span> === <span class="cs">'message'</span>) {
+        <span class="cf">setMessages</span>(<span class="cv">prev</span> =&gt; [...<span class="cv">prev</span>, <span class="cv">event</span>]);
+      } <span class="ck">else if</span> (<span class="cv">event</span>.<span class="cv">type</span> === <span class="cs">'typing'</span>) {
+        <span class="cf">setTypingUsers</span>(<span class="cv">event</span>.<span class="cv">users</span>);
+      }
+    };
+
+    <span class="cv">wsRef</span>.<span class="cv">current</span> = <span class="cv">ws</span>;
+    <span class="ck">return</span> () =&gt; <span class="cv">ws</span>.<span class="cf">close</span>();
+  }, [<span class="cv">room</span>]);
+
+  <span class="ck">const</span> <span class="cv">send</span> = <span class="cf">useCallback</span>((<span class="cv">text</span>) =&gt; {
+    <span class="cv">wsRef</span>.<span class="cv">current</span>?.<span class="cf">send</span>(
+      <span class="cv">JSON</span>.<span class="cf">stringify</span>({ <span class="cv">type</span>: <span class="cs">'message'</span>, <span class="cv">text</span> })
+    );
+  }, []);
+
+  <span class="ck">return</span> { <span class="cv">messages</span>, <span class="cv">send</span>, <span class="cv">connected</span>, <span class="cv">typingUsers</span> };
+}</code></pre>
+      </div>
+
+      <div class="code-pane" id="pane-broadcast">
+        <div class="code-file-bar">
+          <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+          <span class="code-filename">broadcast.js</span>
+          <span class="code-lang-tag">Utility</span>
+        </div>
+        <pre class="code-pre"><code><span class="ck">const</span> <span class="cv">WebSocket</span> = <span class="cf">require</span>(<span class="cs">'ws'</span>);
+
+<span class="cc">/**
+ * Broadcast a message to all open sockets
+ * in a room, optionally excluding sender.
+ */</span>
+<span class="ck">function</span> <span class="cf">broadcast</span>(<span class="cv">roomClients</span>, <span class="cv">payload</span>, <span class="cv">sender</span> = <span class="ck">null</span>) {
+  <span class="ck">if</span> (!<span class="cv">roomClients</span>) <span class="ck">return</span>;
+
+  <span class="ck">const</span> <span class="cv">data</span> = <span class="cv">JSON</span>.<span class="cf">stringify</span>(<span class="cv">payload</span>);
+
+  <span class="cv">roomClients</span>.<span class="cf">forEach</span>((<span class="cv">client</span>) =&gt; {
+    <span class="ck">if</span> (
+      <span class="cv">client</span> !== <span class="cv">sender</span> &amp;&amp;
+      <span class="cv">client</span>.<span class="cv">readyState</span> === <span class="cv">WebSocket</span>.<span class="cv">OPEN</span>
+    ) {
+      <span class="cv">client</span>.<span class="cf">send</span>(<span class="cv">data</span>);
+    }
+  });
+}
+
+<span class="cc">/**
+ * Send a typing event to room peers.
+ * Debounced on the client side.
+ */</span>
+<span class="ck">function</span> <span class="cf">broadcastTyping</span>(<span class="cv">roomClients</span>, <span class="cv">userId</span>, <span class="cv">sender</span>) {
+  <span class="cf">broadcast</span>(
+    <span class="cv">roomClients</span>,
+    { <span class="cv">type</span>: <span class="cs">'typing'</span>, <span class="cv">userId</span> },
+    <span class="cv">sender</span>
+  );
+}
+
+<span class="cc">/**
+ * Get count of active connections in room.
+ */</span>
+<span class="ck">function</span> <span class="cf">getRoomSize</span>(<span class="cv">roomClients</span>) {
+  <span class="ck">if</span> (!<span class="cv">roomClients</span>) <span class="ck">return</span> <span class="cn">0</span>;
+  <span class="ck">return</span> [...<span class="cv">roomClients</span>].<span class="cf">filter</span>(
+    <span class="cv">c</span> =&gt; <span class="cv">c</span>.<span class="cv">readyState</span> === <span class="cv">WebSocket</span>.<span class="cv">OPEN</span>
+  ).<span class="cv">length</span>;
+}
+
+<span class="cv">module</span>.<span class="cv">exports</span> = { <span class="cv">broadcast</span>, <span class="cv">broadcastTyping</span>, <span class="cv">getRoomSize</span> };</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">RealTalk<span class="dot">.</span></div>
+        <p class="footer-tagline">A production-grade distributed chat platform — built for learning and production alike.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Project</div>
+          <a href="#overview">Overview</a>
+          <a href="#metrics">Metrics</a>
+          <a href="#architecture">Architecture</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Code</div>
+          <a href="#stack">Tech Stack</a>
+          <a href="#code">Code Samples</a>
+          <a href="https://github.com" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 RealTalk. Crafted with React, Node.js & WebSockets.</span>
+      <span>Built for scale.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
